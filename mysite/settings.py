@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import os
 import django_heroku
 import dj_database_url
 from pathlib import Path
@@ -27,7 +28,7 @@ SECRET_KEY = 'django-insecure-4wcb15x#o=kelh@#byewmg5(v^7q81vmhz$)(nlg=v%gbdt63r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['freejing.herokuapp.com']
 
 
 # Application definition
@@ -82,8 +83,12 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dcs60ii0ha42dt',
+        'USER': 'tbkbxgemnscxwm',
+        'PASSWORD': '728a2f86ae7c447a2a9ea8f96a25da00d6e33476ac3fb676074cd85ff3133b1d',
+        'HOST': 'ec2-44-194-167-63.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -122,7 +127,8 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 

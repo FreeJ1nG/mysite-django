@@ -1,0 +1,12 @@
+{% if have_birthday_list %}
+  <h1> {{ day_month_year_display_message }} </h1>
+  <ul>
+  {% for person in have_birthday_list %}
+    <li> {{ person.name }} </li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <h1> {{ no_birthday_message }} </h1>
+{% endif %}
+
+<a href = "{% url 'birthday_tracker:index' %}"> Go back to calendar </a>

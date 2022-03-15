@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
+    <meta charset="UTF-8">
+    <title>{{ post.title }}</title>
+  </head>
+  <body>
+    <div class="topnav">
+      <a href="{% url 'blog:index' %}">Home</a>
+      <a href="{% url 'blog:contact' %}">Contact</a>
+      {% if not request.user.is_authenticated %}
+        <a id = "signup-button" href="{% url 'blog:signup' %}">Sign Up</a>
+      {% endif %}
+      {% if request.user.is_authenticated %}
+        <a id = "logout-button" href="{% url 'blog:logout' %}">Log Out</a>
+        <div>
+          Logged in as {{ request.user.first_name }}
+        </div>
+      {% else %}
+        <a id = "login-button" href="{% url 'blog:login' %}">Log In</a>
+      {% endif %}
+    </div>
+    <div class="detail-content">
+      <h1>{{ post.title }}</h1>
+      <p>{{ post.content }}</p>
+      <h3>This post was written on the {{ post.get_formatted_date }}. </h3>
+      <div id = "upvote">
+        <div id = "upvote-counter">{{ post.upvotes }}</div>
+        <img src="{% static 'blog/images/heart.png' %}" id = "heart">
+        {% if show_upvote %}
+          <form method="post">
+            {% csrf_token %}
+            <input class = "upvote-button" type="submit" name="upvote" value="Upvote">
+          </form>
+        {% endif %}
+      </div>
+    </div>
+    <br><br><br><br>
+    <hr>
+    <div class="comment-section">
+      <h1 id = "comment-header">Comments</h1>
+      <div class="user-comment-box">
+        {% for comment in comment_list %}
+          <div class="user-comment">
+            <h2>Posted by {{ comment.user }} on the {{ comment.get_formatted_date }}.</h2>
+            <p>{{ comment.content }}</p>
+            {% if request.user.username == comment.user or request.user.is_superuser %}
+              <a href="{% url 'blog:edit_comment' post.id comment.id %}">Edit</a>
+              <a href="{% url 'blog:delete_comment' post.id comment.id %}">Delete</a>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+      {% if request.user.is_authenticated %}
+        <form action="{% url 'blog:post_comment' post.id %}" method="post">
+          {% csrf_token %}
+          <fieldset class="post-comment-box">
+            <label id = "comment-label" for="comment">Type your comment here: </label>
+            <textarea class="comment-box" name="comment"></textarea>
+            <br><br>
+          <input class = "post-comment-button" type="submit" value="Post your comment!">
+        </fieldset>
+        </form>
+      {% else %}
+        <h1> You have to log in / register to post comments! </h1>
+      {% endif %}
+    </div>
+  </body>
+</html>

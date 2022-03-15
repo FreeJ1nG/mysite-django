@@ -1,0 +1,21 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'birthday_tracker/style.css' %}">
+
+<form action = "{% url 'birthday_tracker:insert_input' %}" method = "post">
+{% csrf_token %}
+  <div>
+    <label for = "name">Enter his/her name</label>
+    <input id = "name" type = "text" name = "name" placeholder = "Name" />
+  </div>
+  <div>
+    <label for = "instagram">Enter his/her instagram</label>
+    <input id = "instagram" type = "text" name = "instagram" placeholder = "Instagram"/>
+  </div>
+  <div>
+    <label for "birthdate">Enter when he/her was born</label>
+    <input id = "birthdate" type = "date" name = "birthdate" placeholder = "Birthdate"/>
+  </div>
+  <div> <button id = "inputbutton" type = 'submit'>Insert Data</button> </div>
+</form>
+
+<a id = "gobacktocalendar_from_input" href = "{% url 'birthday_tracker:index' %}">Go back to calendar</a>

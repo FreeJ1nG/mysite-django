@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="topnav">
+      <a href="{% url 'blog:index' %}">Home</a>
+      <a class = "active" href="{% url 'blog:contact' %}">Contact</a>
+      <a id = "signup-button" href="{% url 'blog:signup' %}">Sign Up</a>
+      {% if request.user.is_authenticated %}
+        <a id = "logout-button" href="{% url 'blog:logout' %}">Log Out</a>
+        <div>
+          Logged in as {{ request.user }}
+        </div>
+      {% else %}
+        <a id = "login-button" href="{% url 'blog:login' %}">Log In</a>
+      {% endif %}
+    </div>
+    <div class="social-box">
+      <a target="_blank" href="https://www.instagram.com/andrew.jeremy/">
+        <img class = "logo" src="{% static 'blog/images/instagram-logo.png' %}">
+      </a>
+      <a target="_blank" href="https://www.linkedin.com/in/andrew-jeremy-a1b8661a1">
+        <img class = "logo" src="{% static 'blog/images/linkedin-logo.png' %}">
+      </a>
+      <a target="_blank" href="https://api.whatsapp.com/send/?phone=6282214093455">
+        <img class = "logo" src="{% static 'blog/images/whatsapp-logo.png' %}">
+      </a>
+      <a target="_blank" href="https://www.youtube.com/channel/UClxTIo7eCwo2vhAKTXZ4BVQ">
+        <img class = "logo" src="{% static 'blog/images/youtube-logo.png' %}">
+      </a>
+      <a target="_blank" href="https://github.com/PokerFace777">
+        <img class = "logo" src="{% static 'blog/images/github-logo.png' %}">
+      </a>
+    </div>
+  </body>
+</html>

@@ -7,9 +7,28 @@
   <title>Vertical Timeline</title>
 </head>
 <body>
+  <div class="topnav">
+    <a class = "active" href="{% url 'home' %}">Home</a>
+    <a href="{% url 'blog:index' %}">Blog</a>
+    <a href="{% url 'blog:contact' %}">Contact</a>
+    {% if not request.user.is_authenticated %}
+      <a id = "signup-button" href="{% url 'blog:signup' %}">Sign Up</a>
+    {% endif %}
+    {% if request.user.is_authenticated %}
+      <a id = "logout-button" href="{% url 'blog:logout' %}">Log Out</a>
+      <div>
+        Logged in as {{ request.user.first_name }}
+      </div>
+    {% else %}
+      <a id = "login-button" href="{% url 'blog:login' %}">Log In</a>
+    {% endif %}
+  </div>
   <h1 class = "intro"> Let me introduce myself</h1>
-  <h1 class = "intro"> Undergraduate of Computer Science</h1>
-  <h1 class = "intro"> I love to explore new things and subjects!</h1>
+  <h2 class = "intro"> Undergraduate of Computer Science</h2>
+  <h2 class = "intro"> I love to explore new things and subjects!</h2>
+  <h2 class = "intro">
+    Or... you can see my <a class = "cv-link" href = "{% url 'cv_view' %}">cv</a> here.
+  </h2>
   <div class="container">
     <div class="timeline">
       <ul>
@@ -22,24 +41,44 @@
         <li>
           <div class="timeline-content">
             <h1>SD Plus Penabur Cirebon</h1>
-            <p>Fun times 😎</p>
+            <h5> - Played a lot of soccer ⚽</h5>
+            <h5> - Swam a lot 🏊</h5>
+            <h5> - Played Point Blank 🔫</h5>
+            <h5> - Learned how to play the drum 🥁</h5>
           </div>
         </li>
         <li>
           <div class="timeline-content">
             <h1>SMPK Penabur Cirebon</h1>
-            <p>Represented my school for a few local math competitions</p>
+            <h5> - Represented my school to local math competitions ➕	</h5>
+            <h5> - Learned how to play the guitar 🎸</h5>
+            <h5> - Learned minecraft redstone 🟥</h5>
+            <h5> - Learned minecraft command block 😎</h5>
           </div>
         </li>
         <li>
           <div class="timeline-content">
             <h1>SMAK Penabur Gading Serpong</h1>
-            <p>Started becoming a nerd 🤓
-            </p>
+            <h5> - Learned how to code C++ ⌨</h5>
+            <h5> - 3rd placement on Falcon Programming Contest (UPH) 🥉</h5>
+            <h5> - 3rd placement on Dcode10 Academy 🥉</h5>
+            <h5> - Silver Medalist of the 20th Nationals of Informatics 🥈</h5>
+            <h5> - Top 16 Candidates for Internationals on Informatics selection</h5>
+            <h5> - Made a website made out of HTML and CSS for a school competition</h5>
+          </div>
+        </li>
+        <li>
+          <div class="timeline-content">
+            <h1>Universitas Indonesia</h1>
+            <h5> - Learned how to code python 🐍</h5>
+            <h5> - Learned how to code / use the django framework ⌨️</h5>
+            <h5> - Participated in a few Dota 2 tournaments representing the University of Indonesia 🇮🇩</h5>
           </div>
         </li>
       </ul>
     </div>
   </div>
+  <h1>My Projects</h1>
+  
 </body>
 </html>

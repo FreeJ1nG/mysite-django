@@ -5,21 +5,46 @@
   box-sizing: border-box;
 }
 
-html {
+body {
+  background-color: #303841;
+  color: #eeeeee;
   font-family: 'Roboto', sans-serif;
-  color: white;
+  margin: 0px;
+  height: 100%;
 }
 
 body {
   background-color: #303841;
 }
 
-.intro {
-  padding-left: 50px;
+.pdf-view {
+  height: 100vh;
+  width: 100vw;
 }
 
-.intro:first-child {
-  padding-top: 50px;
+#logout-button {
+  float: right;
+}
+
+#login-button {
+  float: right;
+}
+
+#signup-button {
+  float: right;
+}
+
+.cv-link {
+  text-decoration: none;
+  color: #00adb5;
+}
+
+.intro {
+  padding-left: 30px;
+}
+
+.intro:first-of-type {
+  padding-top: 30px;
 }
 
 .resize {
@@ -73,6 +98,39 @@ body {
   line-height: 20px;
   font-weight: 300
   margin-bottom: 0px;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: black;
+}
+
+.topnav a {
+  float: left;
+  color: #eeeeee;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.topnav div {
+  float: right;
+  color: #eeeeee;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.topnav a.active {
+  background-color: #00adb5;
+  color: white;
+}
+
+.topnav a:hover {
+  background-color: #00adb5;
+  color: black;
 }
 
 @media only screen and (min-width: 768px) {

@@ -26,6 +26,8 @@ def detail(request, post_id):
         show_upvote = True
     else:
         show_upvote = False
+    if not user.is_authenticated:
+        show_upvote = False
     if request.method == 'POST':
         post.upvotes += 1
         post.save()

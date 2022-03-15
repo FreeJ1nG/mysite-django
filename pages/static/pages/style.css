@@ -34,6 +34,14 @@ body {
   float: right;
 }
 
+.project-box {
+  width: 100%;
+}
+
+.project-box h1 {
+  text-align: center;
+}
+
 .cv-link {
   text-decoration: none;
   color: #00adb5;

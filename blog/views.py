@@ -71,10 +71,17 @@ def signup_user(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
+        re_password = request.POST['re_password']
         full_name = request.POST['full_name']
-        user = User.objects.create_user(username = username, password = password, first_name = full_name)
-        user.save()
-        return HttpResponseRedirect(reverse('blog:index'))
+        if password == re_password:
+            user = User.objects.create_user(username = username, password = password, first_name = full_name)
+            user.save()
+            return HttpResponseRedirect(reverse('blog:index'))
+        else:
+            error_message = 'Your passwords did not match!'
+            return render(request, 'blog/signup.html', {
+                'error_message': error_message,
+            })
     else:
         return render(request, 'blog/signup.html', {})
 

@@ -10,25 +10,25 @@
   <body>
     <div class="topnav">
       <a href="{% url 'home' %}">Home</a>
-      <a class = "active" href="{% url 'birthday_tracker:index' %}">Calendar</a>
-      <a href="{% url 'birthday_tracker:input' %}">Input Birthday</a>
+      <a href="{% url 'birthday_tracker:index' %}">Calendar</a>
+      <a class = "active" href="{% url 'birthday_tracker:input' %}">Input Birthday</a>
     </div>
-    <div class="center-box">
+    <div class="input-box center-box">
       <form action = "{% url 'birthday_tracker:insert_input' %}" method = "post">
         {% csrf_token %}
         <div>
-          <label for = "name">Enter his/her name</label><br>
+          <label for = "name">Enter your name</label><br>
           <input id = "name" type = "text" name = "name" placeholder = "Name" /><br>
         </div>
         <div>
-          <label for = "instagram">Enter his/her instagram</label><br>
+          <label for = "instagram">Enter your instagram ID</label><br>
           <input id = "instagram" type = "text" name = "instagram" placeholder = "Instagram"/><br>
         </div>
         <div>
-          <label for "birthdate">Enter when he/she was born</label><br>
+          <label for "birthdate">Enter when you were born</label><br>
           <input id = "birthdate" type = "date" name = "birthdate" placeholder = "Birthdate"/><br>
         </div>
-        <button id = "inputbutton" type = 'submit'>Insert Data</button>
+        <button id = "insert-data-button" class = "submit-form-button" type = 'submit'>Insert Data</button>
       </form>
     </div>
   </body>

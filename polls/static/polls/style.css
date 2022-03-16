@@ -84,6 +84,8 @@ a {
   background-color: #00adb5;
   color: #eeeeee;
   font-size: 20px;
+  display: block;
+  margin: auto;
 }
 
 .submit-form-button:hover {

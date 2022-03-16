@@ -39,14 +39,24 @@ a {
   border: 1px;
 }
 
-#inputbutton {
-  width: 115px;
-  height: 55px;
-  background: #00adb5;
-  border-radius: 10px;
+.submit-form-button {
+  width: 150px;
+  height: auto;
+  border: 2px solid #eeeeee;
+  border-radius: 20px;
+  background-color: #00adb5;
   color: #eeeeee;
-  font-weight: bold;
-  line-height: 25px;
+  font-size: 20px;
+  display: block;
+  margin: auto;
+}
+
+.submit-form-button:hover {
+  background-color: #3a4750;
+}
+
+#insert-data-button {
+  margin-top: 20px;
 }
 
 #gobacktocalendar_from_input {
@@ -119,6 +129,13 @@ body {
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+
+.input-box {
+  padding: 30px;
+  background-color: #00adb5;
+  border-radius: 20px;
+  border: 2px solid white;
 }
 
 .recent-blog-header {

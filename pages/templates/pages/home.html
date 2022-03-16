@@ -24,12 +24,13 @@
       <a id = "login-button" href="{% url 'blog:login' %}">Log In</a>
     {% endif %}
   </div>
-  <h1 class = "intro"> Let me introduce myself</h1>
-  <h2 class = "intro"> Undergraduate of Computer Science</h2>
-  <h2 class = "intro"> I love to explore new things and subjects!</h2>
+  <h1 class = "intro" style = "margin-top: 30px;"> Let me introduce <strong style = "font-size: 40px;">myself</strong></h1>
   <h2 class = "intro">
     Or... you can see my <a class = "cv-link" href = "{% url 'cv_view' %}">cv</a> here.
   </h2>
+  <br><br>
+  <h2 class = "intro"> Undergraduate of Computer Science</h2>
+  <h2 class = "intro"> I love to explore new things and subjects!</h2>
   <div class="container">
     <div class="timeline">
       <ul>
@@ -79,23 +80,63 @@
       </ul>
     </div>
   </div>
-  <div class="project-box">
-    <h1>My Projects</h1>
+  <center><h1 style = "font-size:50px; margin-bottom:50px;">My Projects</h1><center>
+  <div>
+    <center>
+      <div class="project-box">
+        <h1>A Blog App</h1>
+        <h3>
+          A blog application made using a combination of Django, Python and css. You can see the application
+           <a id = "here-hyperlink" href="https://https://freejing.herokuapp.com/blog">here</a> or click the image below.
+           The app has an upvote and comment feature, only users that has signed up can log in and comment.
+        </h3>
+        <a href="{% url 'blog:index' %}">
+          <img class = "app-project" src="{% static 'pages/images/blog.png' %}">
+        </a>
+      </div>
+      <div class="project-box">
+        <h1>A Birthday Tracker App</h1>
+        <h3>
+          A calendar app that keeps a database of your birthdays! The days wih red colors show the ones which have
+           a friend's birthday. You can see the app <a id = "here-hyperlink" href="https://https://freejing.herokuapp.com/birthday_tracker">here</a>.
+        </h3>
+        <a href="{% url 'birthday_tracker:index' %}">
+          <img class = "app-project" src="{% static 'pages/images/calendar.png' %}">
+        </a>
+      </div>
+      <div class="project-box">
+
+        <a href="{% url 'polls:index' %}">
+          <img class = "app-project" src="{% static 'pages/images/blog.png' %}">
+        </a>
+      </div>
+    <center>
+
     <div class="gallery-row">
-      <a href="{% url 'blog:index' %}">
-        <img class = "left" src="{% static 'pages/images/blog.jpg' %}">
-      </a>
-      <div>
-        <img class = "right" src="{% static 'pages/images/barcode.png' %}">
+      <div class="left">
+        <h1>A Wordcloud Generator</h1>
+        <h3>A python app that takes in a txt input and generates a wordcloud made out of HTML</h3>
+        <img class = "image-resize" src="{% static 'pages/images/wordcloud.jpg' %}">
+      </div>
+      <div class = "right">
+        <h1>Barcode Maker</h1>
+        <h3>Given a code, this python program will generate an actual working barcode</h3>
+        <img class = "image-resize" src="{% static 'pages/images/barcode.png' %}">
       </div>
     </div>
     <div class="gallery-row">
-      <img class = "left" src="">
-      <img class = "right" src="">
-    </div>
-    <div class="gallery-row">
-      <img class = "left" src="">
-      <img class = "right" src="">
+      <div class="left">
+        <h1>A Drawing Tool App</h1>
+        <h3>A drawing tool made using python tkinter library</h3>
+        <img class = "image-resize" src="{% static 'pages/images/draw-tool.png' %}">
+      </div>
+      <div class = "right">
+        <h1>TOKI Regular Open Contest #17</h1>
+        <h3>One of the authors of a Competitive Programming Contest with over 150 participants</h3>
+        <a href="https://tlx.toki.id/contests/troc-17/" target = "_blank">
+          <img class = "image-resize transparent-on-hover" src="{% static 'pages/images/troc.png' %}">
+        </a>
+      </div>
     </div>
   </div>
 </body>

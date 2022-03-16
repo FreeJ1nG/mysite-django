@@ -48,11 +48,8 @@ body {
 }
 
 .intro {
-  padding-left: 30px;
-}
-
-.intro:first-of-type {
-  padding-top: 30px;
+  text-align: center;
+  font-size: 35px;
 }
 
 .resize {
@@ -143,14 +140,73 @@ body {
 
 .left {
   float:left;
-  width: 50%;
+  width: 40%;
+  transform: translateX(20%);
   height: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 30px;
 }
 
 .right {
   float: right;
-  width: 50%;
+  width: 40%;
+  transform: translateX(-20%);
   height: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 30px;
+}
+
+.image-resize {
+  width: 100%;
+  height: auto;
+}
+
+.app-project {
+  width: 80%;
+  height: auto;
+  margin: 30px;
+}
+
+.project-box {
+  width: 80%;
+  height: auto;
+  border: 3px solid #00adb5;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.project-box a:hover {
+  opacity: 0.5;
+}
+
+.project-box h1 {
+  margin: 20px;
+}
+
+.project-box h3{
+  width: 80%;
+}
+
+.transparent-on-hover:hover {
+  opacity: 0.5;
+}
+
+#project-title {
+  margin-bottom: 0;
+  float: left;
+}
+
+#project-description {
+  margin-bottom: 0;
+  float: left;
+}
+
+#here-hyperlink {
+  color: #00adb5;
+  text-decoration: none;
 }
 
 @media only screen and (min-width: 768px) {

@@ -22,6 +22,18 @@ def check_show_upvote(request, post):
         ret = False
     return ret
 
+def add_post_execute(request):
+    print(request.POST)
+    title = request.POST['title']
+    content = request.POST['new_content']
+    pub_date = timezone.now()
+    post = Post.objects.create(content = content, title = title, pub_date = pub_date)
+    return HttpResponseRedirect(reverse('blog:index'))
+
+def add_post(request):
+    return render(request, 'blog/add_post.html', {
+
+    })
 
 def index(request):
     latest_post_list = Post.objects.order_by("-upvotes")[0:10]

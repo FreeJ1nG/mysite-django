@@ -1,37 +1,54 @@
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
-<link rel = "icon" href = "{% static 'blog/images/logo.png' %}">
-<div class="topnav">
-  <a href="{% url 'home' %}">Home</a>
-  <a href="{% url 'blog:index' %}">Blog</a>
-  <a href="{% url 'blog:contact' %}">Contact</a>
-  {% if not request.user.is_authenticated %}
-    <a id = "signup-button" href="{% url 'blog:signup' %}">Sign Up</a>
-  {% endif %}
-  {% if request.user.is_authenticated %}
-    <a id = "logout-button" href="{% url 'blog:logout' %}">Log Out</a>
-    <div>
-      Logged in as {{ request.user.first_name }}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
+    <link rel = "icon" href = "{% static 'blog/images/logo.png' %}">
+    <title>Log In</title>
+  </head>
+  <body>
+    <div class="topnav">
+      <a href="{% url 'home' %}">Home</a>
+      <a class = "active" href="{% url 'blog:index' %}">Blog</a>
+      <a href="{% url 'blog:contact' %}">Contact</a>
+      {% if request.user.is_superuser %}
+      <a href="{% url 'blog:add_post' %}">+ New Post</a>
+      {% endif %}
+      {% if not request.user.is_authenticated %}
+      <a id = "signup-button" href="{% url 'blog:signup' %}">Sign Up</a>
+      {% endif %}
+      {% if request.user.is_authenticated %}
+      <a id = "logout-button" href="{% url 'blog:logout' %}">Log Out</a>
+      <div>
+        Logged in as
+        {% if request.user.is_superuser %}
+        admin_{{ request.user.username }}
+        {% else %}
+        {{ request.user.first_name }}
+        {% endif %}
+      </div>
+      {% else %}
+      <a id = "login-button" href="{% url 'blog:login' %}">Log In</a>
+      {% endif %}
     </div>
-  {% else %}
-    <a id = "login-button" href="{% url 'blog:login' %}">Log In</a>
-  {% endif %}
-</div>
-<form action="{% url 'blog:login' %}" method="post">
-  {% csrf_token %}
-  <div class="login-box">
-    <h1 style = "text-align:center;">Log In</h1>
-    <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username" value=""><br>
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password"><br>
-    <input type="submit" value = "Submit">
-    {% if messages %}
-      {% for message in messages %}
+    <form action="{% url 'blog:login' %}" method="post">
+      {% csrf_token %}
+      <div class="login-box">
+        <h1 style = "text-align:center;">Log In</h1>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" value=""><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <input class = "submit-form-button" type="submit" value = "Submit">
+        {% if messages %}
+        {% for message in messages %}
         <div>
           <strong>{{ message }}</strong>
         </div>
-      {% endfor %}
-    {% endif %}
-  </div>
-</form>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </form>
+  </body>
+</html>

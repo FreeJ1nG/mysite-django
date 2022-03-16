@@ -4,6 +4,7 @@
   <head>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
+    <link rel = "icon" href = "{% static 'blog/images/logo.png' %}">
     <meta charset="UTF-8">
     <title>{{ post.title }}</title>
   </head>
@@ -65,6 +66,9 @@
           <input class = "post-comment-button" type="submit" value="Post your comment!">
         </fieldset>
         </form>
+        {% if error_message %}
+          <strong>{{ error_message }}</strong>
+        {% endif %}
       {% else %}
         <h1 class = "login-warning"> You have to log in / register to post comments! </h1>
       {% endif %}

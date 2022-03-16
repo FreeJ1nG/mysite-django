@@ -13,14 +13,38 @@
     line-height: 25px;
 }
 
+table {
+  border-radius: 20px;
+  padding: 20px;
+  background-color: #00adb5;
+  margin-bottom: 50px;
+}
+
+th {
+  padding: 10px;
+  border: 1px solid #eeeeee;
+}
+td {
+  padding: 10px;
+  border: 1px solid #eeeeee;
+}
+
+a {
+  text-decoration: none;
+  color: #eeeeee;
+}
+
+#date {
+  margin: 5px;
+  border: 1px;
+}
+
 #inputbutton {
-  display: block;
   width: 115px;
   height: 55px;
-  background: #4E9CAF;
-  padding: 10px;
-  border-radius: 5px;
-  color: white;
+  background: #00adb5;
+  border-radius: 10px;
+  color: #eeeeee;
   font-weight: bold;
   line-height: 25px;
 }
@@ -43,10 +67,6 @@ body {
   color: #eeeeee;
   font-family: 'Roboto', sans-serif;
   margin: 0px;
-}
-
-a {
-  text-decoration: none;
 }
 
 #upvote {
@@ -92,6 +112,15 @@ a {
   float: right;
 }
 
+.center-box {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 .recent-blog-header {
   margin: 20px;
   text-align: center;
@@ -120,6 +149,36 @@ a {
 
 .post-comment-button {
   margin-left: 50%;
+}
+
+.month-nav {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background-color: black;
+  overflow: auto;
+  align-items: center;
+  display: flex;
+}
+
+.month-nav a {
+  flex: 1;
+  float: left;
+  color: #eeeeee;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.month-nav a.active {
+  background-color: #00adb5;
+  color: white;
+}
+
+.month-nav a:hover {
+  background-color: #00adb5;
+  color: black;
 }
 
 .topnav {

@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'birthday_tracker/style.css' %}">
+    <link rel = "icon" href = "{% static 'birthday_tracker/images/logo.png' %}">
+    <title>{{ month }} Calendar</title>
+  </head>
+  <body>
+    <div class="topnav">
+      <a href="{% url 'home' %}">Home</a>
+      <a class = "active" href="{% url 'birthday_tracker:index' %}">Calendar</a>
+      <a href="{% url 'birthday_tracker:input' %}">Input Birthday</a>
+    </div>
+    <div class="center-box">
+      {% if warning_message %}
+      <h2> {{ warning_message }} </h2>
+      {% endif %}
+      <center>
+        <h1> It is currently {{ month_name }} {{ year }} </h1>
+        {{ cal | safe }}
+      </center>
+    </div>
+    <div class="month-nav">
+      {% for m in month_list %}
+        <a {% if forloop.counter == month %}class = "active"{% endif %} href="{% url 'birthday_tracker:month_detail' year forloop.counter %}">
+          {{ m }}
+        </a>
+      {% endfor %}
+    </div>
+  </body>
+</html>

@@ -2,9 +2,10 @@
 <head>
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'pages/style.css' %}">
+  <link rel = "icon" href = "{% static 'pages/images/logo.png' %}">
   <meta charset = "UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vertical Timeline</title>
+  <title>Know me better</title>
 </head>
 <body>
   <div class="topnav">
@@ -80,6 +81,22 @@
   </div>
   <div class="project-box">
     <h1>My Projects</h1>
+    <div class="gallery-row">
+      <a href="{% url 'blog:index' %}">
+        <img class = "left" src="{% static 'pages/images/blog.jpg' %}">
+      </a>
+      <div>
+        <img class = "right" src="{% static 'pages/images/barcode.png' %}">
+      </div>
+    </div>
+    <div class="gallery-row">
+      <img class = "left" src="">
+      <img class = "right" src="">
+    </div>
+    <div class="gallery-row">
+      <img class = "left" src="">
+      <img class = "right" src="">
+    </div>
   </div>
 </body>
 </html>

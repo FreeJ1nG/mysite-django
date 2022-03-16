@@ -9,6 +9,20 @@ from django.utils import timezone
 
 from .models import Post, Comment, Upvoter
 
+def check_show_upvote(request, post):
+    ret = False
+    try:
+        post.upvoter_set.get(username = request.user.username)
+    except (KeyError, Upvoter.DoesNotExist):
+        ret = True
+    else:
+        ret = False
+
+    if not request.user.is_authenticated:
+        ret = False
+    return ret
+
+
 def index(request):
     latest_post_list = Post.objects.order_by("-upvotes")[0:10]
     return render(request, 'blog/index.html', {
@@ -20,14 +34,7 @@ def detail(request, post_id):
     comment_list = post.comment_set.all()
     upvoter_list = post.upvoter_set.all()
     user = request.user
-    try:
-        post.upvoter_set.get(username = user.username)
-    except (KeyError, Upvoter.DoesNotExist):
-        show_upvote = True
-    else:
-        show_upvote = False
-    if not user.is_authenticated:
-        show_upvote = False
+    show_upvote = check_show_upvote(request, post)
     if request.method == 'POST':
         post.upvotes += 1
         post.save()
@@ -48,10 +55,22 @@ def contact_view(request):
 
 def post_comment(request, post_id):
     user = request.user
-    comment = request.POST['comment']
+    new_comment = request.POST['comment']
     post = Post.objects.get(id = post_id)
-    new_comment = post.comment_set.create(pub_date = timezone.now(), content = comment, user = user.username)
-    return HttpResponseRedirect(reverse('blog:detail', args = (post_id, )))
+    comment_list = post.comment_set.all()
+    if new_comment:
+        post.comment_set.create(pub_date = timezone.now(), content = new_comment, user = user.username)
+        return HttpResponseRedirect(reverse('blog:detail', args = (post_id, )))
+    else:
+        error_message = "Your comment cannot be an empty comment!"
+        show_upvote = check_show_upvote(request, post)
+        return render(request, 'blog/detail.html', {
+            'post': post,
+            'post_id': post_id,
+            'comment_list': comment_list,
+            'show_upvote': show_upvote,
+            'error_message': error_message,
+        })
 
 def login_user(request):
     if request.method == "POST":

@@ -29,6 +29,7 @@ class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete = models.CASCADE)
     content = models.TextField(max_length = 100000, default = "")
     pub_date = models.DateTimeField('date published', default = timezone.now)
+    edited = models.BooleanField(default = False)
     def __str__(self):
         return "Comment by " + self.user
     @property

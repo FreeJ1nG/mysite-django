@@ -1,3 +1,13 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'birthday_tracker/style.css' %}">
+<link rel = "icon" href = "{% static 'birthday_tracker/images/logo.png' %}">
+
+<div class="topnav">
+  <a href="{% url 'home' %}">Home</a>
+  <a class = "active" href="{% url 'birthday_tracker:index' %}">Calendar</a>
+  <a href="{% url 'birthday_tracker:input' %}">Input Birthday</a>
+</div>
+
 {% if have_birthday_list %}
   <h1> {{ day_month_year_display_message }} </h1>
   <ul>
@@ -8,5 +18,3 @@
 {% else %}
   <h1> {{ no_birthday_message }} </h1>
 {% endif %}
-
-<a href = "{% url 'birthday_tracker:index' %}"> Go back to calendar </a>

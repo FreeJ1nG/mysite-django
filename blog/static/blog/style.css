@@ -54,6 +54,14 @@ a {
   float: right;
 }
 
+.question-box {
+  width: 80%;
+  height: auto;
+  text-align: center;
+  background-color: #00adb5;
+  color: #eeeeee;
+}
+
 .login-box {
   margin: 0;
   position: absolute;
@@ -188,8 +196,8 @@ a {
   text-align: right;
 }
 
-.post-box {
-  margin: 15px;
+.post-hox:hover {
+  opacity: 0.5;
 }
 
 .post-box a {
@@ -204,6 +212,21 @@ a {
 .content {
   background: #00adb5;
   color: #eeeeee;
+  margin: auto;
+  width: 80%;
+  margin-bottom: 30px;
+  height: auto;
+  padding: 20px;
+  border-radius: 20px;
+  border: 2px solid #eeeeee;
+}
+
+.content:hover {
+  opacity: 0.5;
+}
+
+.content li {
+  list-style: none;
 }
 
 .content h1 {
@@ -211,10 +234,6 @@ a {
   margin-top: 10px;
   margin-bottom: 10px;
   text-align: center;
-}
-
-.post-box li {
-  list-style: none;
 }
 
 .logo {

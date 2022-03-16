@@ -1,15 +1,28 @@
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
-<link rel = "icon" href = "{% static 'polls/images/logo.png' %}">
-<form action="{% url 'polls:vote' question.id %}" method="post">
-{% csrf_token %}
-<fieldset>
-    <legend><h1>{{ question.question_text }}</h1></legend>
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-    {% for choice in question.choice_set.all %}
-        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-    {% endfor %}
-</fieldset>
-<input type="submit" value="Vote">
-</form>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+    <link rel = "icon" href = "{% static 'polls/images/logo.png' %}">
+    <meta charset="utf-8">
+    <title>{{ post.question_text }}</title>
+  </head>
+  <body>
+    <div class="topnav">
+      <a href="{% url 'home' %}">Home</a>
+      <a class = "active" href="{% url 'polls:index' %}">Polls</a>
+    </div>
+    <div class="poll-box">
+      <form action="{% url 'polls:vote' question.id %}" method="post">
+        {% csrf_token %}
+        <h1>{{ question.question_text }}</h1>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        {% for choice in question.choice_set.all %}
+          <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+          <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+        {% endfor %}
+        <input class = "vote-button" type="submit" value="Vote">
+      </form>
+    </div>
+  </body>
+</html>

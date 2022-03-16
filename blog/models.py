@@ -17,6 +17,9 @@ class Post(models.Model):
     @property
     def get_formatted_date(self):
         return givesuffix(self.pub_date.day) + " of " + self.pub_date.strftime("%B, %H:%M:%S")
+    @property
+    def get_comment_amount(self):
+        return len(self.comment_set.all())
 
 class Upvoter(models.Model):
     username = models.CharField(max_length = 150)

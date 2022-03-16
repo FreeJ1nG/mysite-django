@@ -1,14 +1,27 @@
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
-<link rel = "icon" href = "{% static 'polls/images/logo.png' %}">
-<h1> {{ question.question_text }} </h1>
-
-<ul>
-  {% for choice in question.choice_set.all %}
-    <li>
-      {{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}
-    </li>
-  {% endfor %}
-</ul>
-
-<a href = "{% url 'polls:detail' question.id %}">Vote again?</a>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+    <link rel = "icon" href = "{% static 'polls/images/logo.png' %}">
+    <meta charset="utf-8">
+    <title>Result of {{ question.question_text }}</title>
+  </head>
+  <body>
+    <div class="topnav">
+      <a href="{% url 'home' %}">Home</a>
+      <a class = "active" href="{% url 'polls:index' %}">Polls</a>
+    </div>
+    <div class="result-box">
+      <h1> {{ question.question_text }} </h1>
+      <ul>
+        {% for choice in question.get_sorted_by_vote %}
+        <li>
+          {{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}
+        </li>
+        {% endfor %}
+      </ul>
+      <h3>{{ question.get_highest_vote.choice_text }} has the highest vote!</h3>
+    </div>
+  </body>
+</html>

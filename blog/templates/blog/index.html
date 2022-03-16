@@ -25,9 +25,8 @@
     <h1 class = "recent-blog-header">The most recent blog posts</h1>
     <ul>
       {% for post in latest_post_list %}
-      <div class="post-box">
-        <li>
-          <a href="{% url 'blog:detail' post.id %}">
+        <a href="{% url 'blog:detail' post.id %}">
+          <li>
             <div class = "content">
               <div id = "upvote">
                 <div id = "upvote-counter">{{ post.upvotes }}</div>
@@ -37,11 +36,11 @@
               <ul>
                 <li> {{ post.get_first_sentence }} </li><br>
                 <li id = "time"> Posted on the {{ post.get_formatted_date }}. </li>
+                <li> {{ post.get_comment_amount }} comments </li>
               </ul>
             </div>
-          </a>
-        </li>
-      </div>
+          </li>
+        </a>
       {% endfor %}
     </ul>
   </body>

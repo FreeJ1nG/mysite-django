@@ -6,32 +6,28 @@ from django.views import generic
 
 from .models import *
 
-class IndexView(generic.ListView):
-    template_name = 'polls/index.html'
-    context_object_name = 'latest_question_list'
+def index(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:10]
+    choice_list = []
+    for question in latest_question_list:
+        choice_list.append(Question.objects.get(id = question.id).choice_set.order_by('votes')[:3])
+    return render(request, 'polls/index.html', {
+        'latest_question_list': latest_question_list,
+        'choice_list': choice_list,
+    })
 
-    def get_queryset(self):
-        return Question.objects.filter(
-            pub_date__lte = timezone.now()
-        ).order_by('-pub_date')[:5]
+def detail(request, poll_id):
+    question = get_object_or_404(Question, id = poll_id)
+    return render(request, 'polls/detail.html', {'question' : question})
 
-class DetailView(generic.DetailView):
-    model = Question
-    template_name = 'polls/detail.html'
+def results(request, poll_id):
+    question = get_object_or_404(Question, id = poll_id)
+    return render(request, 'polls/results.html', {'question' : question})
 
-    def get_queryset(self):
-        return Question.objects.filter(
-            pub_date__lte = timezone.now()
-        )
-
-class ResultsView(generic.DetailView):
-    model = Question
-    template_name = 'polls/results.html'
-
-def vote(request, question_id):
-    question = get_object_or_404(Question, pk = question_id)
+def vote(request, poll_id):
+    question = get_object_or_404(Question, id = poll_id)
     try:
-        selected_choice = question.choice_set.get(pk = request.POST['choice'])
+        selected_choice = question.choice_set.get(id = request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
         return render(request, 'polls/detail.html', {
             'question' : question,
@@ -41,25 +37,3 @@ def vote(request, question_id):
         selected_choice.votes += 1
         selected_choice.save()
         return HttpResponseRedirect(reverse('polls:results', args = (question.id, )))
-
-        # return HttpResponse("You are voting on question %s." % question_id)
-
-# def index(request):
-#     latest_questions = Question.objects.order_by('-pub_date')[:5]
-#     # template = loader.get_template('polls/index.html')
-#     context = {'latest_questions': latest_questions}
-#     return render(request, 'polls/index.html', context)
-#     # return HttpResponse(template.render(context, request))
-#
-# def detail(request, question_id):
-#     question = get_object_or_404(Question, pk = question_id)
-#     return render(request, 'polls/detail.html', {'question' : question})
-#     # try:
-#     #     question = Question.objects.get(pk = question_id)
-#     # except Question.DoesNotExist:
-#     #     raise Http404("Question does not exist")
-#     # return render(request, "polls/detail.html", {'question' : question})
-#
-# def results(request, question_id):
-#     question = get_object_or_404(Question, pk = question_id)
-#     return render(request, 'polls/results.html', {'question' : question})

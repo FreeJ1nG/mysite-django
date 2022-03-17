@@ -14,6 +14,7 @@ class PostAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Content',               {'fields': ['title', 'content']}),
         ('Date information', {'fields': ['pub_date']}),
+        ('Upvotes', {'fields': ['upvotes']}),
     ]
     inlines = [CommentInline, UpvoterInline]
 

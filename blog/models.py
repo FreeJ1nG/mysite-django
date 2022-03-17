@@ -11,15 +11,14 @@ class Post(models.Model):
     upvotes = models.IntegerField(default = 0)
     def __str__(self):
         return self.title
-    @property
     def get_first_sentence(self):
         return self.content.partition('.')[0] + '.'
-    @property
     def get_formatted_date(self):
         return givesuffix(self.pub_date.day) + " of " + self.pub_date.strftime("%B, %H:%M:%S")
-    @property
     def get_comment_amount(self):
         return len(self.comment_set.all())
+    def get_upvote_amount(self):
+        return len(self.upvoter_set.all())
 
 class Upvoter(models.Model):
     username = models.CharField(max_length = 150)

@@ -11,8 +11,8 @@
   <body>
     <div class="topnav">
       <a href="{% url 'home' %}">Home</a>
-      <a class = "active" href="{% url 'blog:index' %}">Blog</a>
-      <a href="{% url 'blog:contact' %}">Contact</a>
+      <a href="{% url 'blog:index' %}">Blog</a>
+      <a class = "active" href="{% url 'blog:contact' %}">Contact</a>
       {% if request.user.is_superuser %}
         <a href="{% url 'blog:add_post' %}">+ New Post</a>
       {% endif %}

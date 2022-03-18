@@ -36,7 +36,7 @@ def add_post(request):
     })
 
 def index(request):
-    latest_post_list = Post.objects.order_by("-upvotes")[0:10]
+    latest_post_list = Post.objects.order_by("-pub_date")[0:10]
     return render(request, 'blog/index.html', {
         'latest_post_list': latest_post_list,
     })

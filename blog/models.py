@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 def givesuffix(date):
-    return str(date) + "th" if 4 <= date <= 20 or 24 <= date <= 30 else ["st", "nd", "rd"][date % 10 - 1]
+    return str(date) + ("th" if 4 <= date <= 20 or 24 <= date <= 30 else ["st", "nd", "rd"][date % 10 - 1])
 
 class Post(models.Model):
     title = models.CharField(max_length = 150)

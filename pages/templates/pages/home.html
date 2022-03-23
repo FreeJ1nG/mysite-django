@@ -73,22 +73,34 @@
   <div>
     <center>
       <div class="project-box">
-        <h1>A Blog App</h1>
+        <h1>Blog App</h1>
         <h3>
           A blog application made using a combination of Django, Python and css. You can see the application
-           <a id = "here-hyperlink" href="https://freejing.herokuapp.com/blog/">here</a> or click the image below.
-           The app has an upvote and comment feature, only users that has signed up can log in and comment.
+           <a id = "here-hyperlink" href="{% url 'blog:index' %}">here</a> or click the image below.
+           The app has an upvote and comment feature, only users that has signed up can log in and comment
         </h3>
         <a href="{% url 'blog:index' %}">
           <img class = "app-project" src="{% static 'pages/images/blog.png' %}">
         </a>
       </div>
       <div class="project-box">
+        <h1>Explore Memes</h1>
+        <h3>
+          A Meme Exploration app made using a combination of Blitz.js (A react.js framework), typescript/javascript
+          and TailwindCSS. You can see the app
+           <a id = "here-hyperlink" href="https://meme.freejing.com/">here</a> or click the image below.
+           The user can search in a search bar and save memes to your saved menu. Ordered with Masonry Layout
+        </h3>
+        <a href="https://meme.freejing.com/">
+          <img class = "app-project" src="{% static 'pages/images/meme.png' %}">
+        </a>
+      </div>
+      <div class="project-box">
         <h1>A Birthday Tracker App</h1>
         <h3>
           A calendar app that keeps a database of your birthdays! The days wih red colors show the ones which have
-           a friend's birthday. You can see the app <a id = "here-hyperlink" href="https://freejing.herokuapp.com/birthday_tracker/">here</a>,
-           or you can click the image below.
+           a friend's birthday. You can see the app <a id = "here-hyperlink" href="{% url 'birthday_tracker:index' %}">here</a>,
+           or you can click the image below
         </h3>
         <a href="{% url 'birthday_tracker:index' %}">
           <img class = "app-project" src="{% static 'pages/images/calendar.png' %}">
@@ -98,8 +110,8 @@
         <h1>A Polling App</h1>
         <h3>
           Ann app to vote on the available polls, the creating polls function is still work in progress
-           though 🤣. You can see the app <a id = "here-hyperlink" href="https://freejing.herokuapp.com/polls/">here</a>,
-           or you can click the image below.
+           though 🤣. You can see the app <a id = "here-hyperlink" href="{% url 'polls:index' %}">here</a>,
+           or you can click the image below
         </h3>
         <a href="{% url 'polls:index' %}">
           <img class = "app-project" src="{% static 'pages/images/polls.png' %}">

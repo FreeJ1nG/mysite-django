@@ -34,17 +34,14 @@
     </div>
     <h1 class = "comment-editor-header">Add a new post!</h1>
     {% if error_message %}
-      <strong<h2>{{ error_message }}</h2></strong>
+      <strong><h2>{{ error_message }}</h2></strong>
     {% endif %}
-    <form action="{% url 'blog:add_post_execute' %}" method="post">
+    <form method="post">
       {% csrf_token %}
       <div class="new-post-box">
-        <label for="title">Add your post title here:</label><br>
-        <input type="text" name="title"><br>
-        <label id = "post-label" for="new_content">Edit your post here: </label><br>
-        <textarea class="comment-box" name="new_content"></textarea>
-        <br><br>
-        <input class = "submit-form-button" type="submit" value="Post!">
+        {{ form.as_p }}
+        {{ form.media }}
+        <button class="submit-form-button">Post</button>
       </div>
     </form>
   </body>

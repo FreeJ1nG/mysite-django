@@ -42,7 +42,7 @@
               </div>
               <h1>{{ post.title }}</h1>
               <ul>
-                <li> {{ post.get_first_sentence }} </li><br>
+                <li> {{ post.get_first_sentence | safe }} </li><br>
                 <li id = "time"> Posted on the {{ post.get_formatted_date }}. </li>
                 <li> {{ post.get_comment_amount }} comments </li>
               </ul>

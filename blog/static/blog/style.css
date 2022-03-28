@@ -195,7 +195,6 @@ a {
 .detail-content p {
   text-align: justify;
   letter-spacing: 2px;
-  white-space: pre-wrap;
 }
 
 .detail-content h3 {

@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.views.generic import CreateView
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.utils import timezone
@@ -30,10 +31,10 @@ def add_post_execute(request):
     post = Post.objects.create(content = content, title = title, pub_date = pub_date)
     return HttpResponseRedirect(reverse('blog:index'))
 
-def add_post(request):
-    return render(request, 'blog/add_post.html', {
-
-    })
+class add_post(CreateView):
+    model = Post
+    template_name = 'blog/add_post.html'
+    fields = ('title', 'content')
 
 def index(request):
     latest_post_list = Post.objects.order_by("-pub_date")[0:10]

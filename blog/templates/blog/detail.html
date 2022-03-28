@@ -35,7 +35,7 @@
     </div>
     <div class="detail-content">
       <h1>{{ post.title }}</h1>
-      <p>{{ post.content }}</p>
+      {{ post.content | safe }}
       <h3>This post was written on the {{ post.get_formatted_date }}. </h3>
       <div id = "upvote">
         <div id = "upvote-counter">{{ post.upvotes }}</div>

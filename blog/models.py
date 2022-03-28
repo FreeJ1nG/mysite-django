@@ -1,13 +1,15 @@
 from django.db import models
 from django.utils import timezone
+from django.urls import reverse
+from ckeditor.fields import RichTextField
 
 def givesuffix(date):
     return str(date) + ("th" if 4 <= date <= 20 or 24 <= date <= 30 else ["st", "nd", "rd"][date % 10 - 1])
 
 class Post(models.Model):
     title = models.CharField(max_length = 150)
-    pub_date = models.DateTimeField('date published')
-    content = models.TextField(max_length = 100000, default = "")
+    pub_date = models.DateTimeField('date published', default = timezone.now())
+    content = RichTextField(blank = True, null = True)
     upvotes = models.IntegerField(default = 0)
     def __str__(self):
         return self.title
@@ -19,6 +21,8 @@ class Post(models.Model):
         return len(self.comment_set.all())
     def get_upvote_amount(self):
         return len(self.upvoter_set.all())
+    def get_absolute_url(self):
+        return reverse('blog:detail', args = (self.id, ))
 
 class Upvoter(models.Model):
     username = models.CharField(max_length = 150)

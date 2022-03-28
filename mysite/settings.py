@@ -113,6 +113,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CKEDITOR_FILENAME_GENERATOR = 'utils.get_filename'
+
 CSRF_TRUSTED_ORIGINS = ['https://*.freejing.com','https://*.127.0.0.1']
 
 

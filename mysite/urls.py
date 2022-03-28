@@ -25,5 +25,5 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path('birthday_tracker/', include('birthday_tracker.urls')),
     path('admin/', admin.site.urls),
-    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
